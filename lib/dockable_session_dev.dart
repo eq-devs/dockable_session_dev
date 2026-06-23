@@ -9,9 +9,9 @@
 /// [SessionController] (open / minimize / restore / close / replace).
 library;
 
-export 'src/minimized_session_bar.dart';
-export 'src/session_controller.dart';
-export 'src/session_entry.dart';
-export 'src/session_host.dart';
-export 'src/session_overlay.dart';
-export 'src/session_status.dart';
+export 'src/core/session_controller.dart';
+export 'src/core/session_entry.dart';
+export 'src/core/session_status.dart';
+export 'src/widgets/minimized_session_bar.dart';
+export 'src/widgets/session_host.dart';
+export 'src/widgets/session_overlay.dart';

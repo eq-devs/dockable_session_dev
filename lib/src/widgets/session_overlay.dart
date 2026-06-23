@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../core/session_controller.dart';
+import '../core/session_entry.dart';
+import '../core/session_status.dart';
 import 'minimized_session_bar.dart';
-import 'session_controller.dart';
-import 'session_entry.dart';
 import 'session_host.dart';
-import 'session_status.dart';
 
 /// Overlays the single persistent session (the animating [SessionHost] and the
 /// docked pill) on top of your own app, which you pass as [child].

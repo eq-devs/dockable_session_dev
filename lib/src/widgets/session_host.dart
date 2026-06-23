@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'render_session_transform.dart';
-import 'session_controller.dart';
-import 'session_status.dart';
+import '../core/session_controller.dart';
+import '../core/session_status.dart';
+import '../rendering/render_session_transform.dart';
 
 /// Renders the live session and animates it between [collapsedRect] (the pill
 /// slot) and [fullRect] (full screen). The motion is driven at the render layer

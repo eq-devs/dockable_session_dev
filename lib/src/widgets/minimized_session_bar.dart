@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'session_controller.dart';
-import 'session_entry.dart';
+import '../core/session_controller.dart';
+import '../core/session_entry.dart';
 
 /// The single docked preview pill that floats above the bottom navigation bar
 /// (doc §3). Tapping it restores the session; the trailing button closes it.

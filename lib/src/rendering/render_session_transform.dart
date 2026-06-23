@@ -159,6 +159,9 @@ class RenderSessionTransform extends RenderProxyBox {
 
   /// The translate×scale applied to the child for the current animation values.
   Matrix4 _currentTransform() {
+    // Guard against a zero-size full rect (e.g. a transient empty layout),
+    // which would otherwise divide by zero and produce a NaN transform.
+    if (_fullRect.isEmpty) return Matrix4.identity();
     final t = _curve.transform(_expansion.value.clamp(0.0, 1.0));
     final rect = Rect.lerp(_collapsedRect, _fullRect, t)!;
     final closeScale = 1 - 0.06 * _closeProgress.value;
@@ -174,7 +177,7 @@ class RenderSessionTransform extends RenderProxyBox {
   @override
   void paint(PaintingContext context, Offset offset) {
     final child = this.child;
-    if (child == null) return;
+    if (child == null || size.isEmpty) return;
 
     final t = _curve.transform(_expansion.value.clamp(0.0, 1.0));
     final radius = lerpDouble(_collapsedRadius, 0, t)!;
