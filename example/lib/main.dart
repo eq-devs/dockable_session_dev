@@ -127,7 +127,7 @@ class _Launcher extends StatelessWidget {
           _LaunchCard(
             icon: Icons.public,
             title: 'URL session (WebView stub)',
-            subtitle: 'Mimics a Custom Tab; tracks lastUrl as a fallback.',
+            subtitle: 'In-app browser session; tracks lastUrl as a fallback.',
             onTap: () => onPresent(
               title: 'example.com',
               builder: (_, controller) => _UrlSession(controller: controller),

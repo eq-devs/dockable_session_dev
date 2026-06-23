@@ -1,4 +1,4 @@
-## 0.1.0
+## 0.0.1
 
 - Initial release of the persistent session framework.
 - `SessionOverlay` — unopinionated overlay that stacks the animating session +
