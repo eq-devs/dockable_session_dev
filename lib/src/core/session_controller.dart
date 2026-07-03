@@ -15,8 +15,9 @@ typedef SessionContentBuilder = Widget Function(
 /// that render it.
 ///
 /// The controller is the lifecycle hub from `doc.MD` §4. It is a
-/// [ChangeNotifier]; the widget layer ([SessionOverlay]) listens
-/// and rebuilds. It owns two [AnimationController]s:
+/// [ChangeNotifier] that notifies only on discrete lifecycle transitions —
+/// never per animation frame; listen to [expansion]/[closeProgress] directly
+/// for per-frame values. It owns two [AnimationController]s:
 ///
 ///  * [expansion] — `0` = collapsed (pill rect), `1` = expanded (full screen).
 ///    Open/restore drive it forward; minimize drives it in reverse.
@@ -34,10 +35,8 @@ class SessionController extends ChangeNotifier {
     this.closeDuration = const Duration(milliseconds: 200),
   }) {
     _expand = AnimationController(vsync: vsync, value: 0)
-      ..addListener(notifyListeners)
       ..addStatusListener(_onExpandStatus);
     _close = AnimationController(vsync: vsync, value: 0)
-      ..addListener(notifyListeners)
       ..addStatusListener(_onCloseStatus);
   }
 
@@ -65,8 +64,8 @@ class SessionController extends ChangeNotifier {
   final _StructureNotifier _structure = _StructureNotifier();
 
   // Emits a structural change: pings [statusListenable] for the widget layer and
-  // also notifies plain [ChangeNotifier] listeners. (Per-frame animation ticks
-  // call notifyListeners directly, bypassing _structure.)
+  // also notifies plain [ChangeNotifier] listeners. Neither channel fires per
+  // animation frame.
   void _emit() {
     _structure.ping();
     notifyListeners();
