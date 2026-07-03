@@ -1,3 +1,16 @@
+## 0.0.2
+
+- Perf: `SessionHost` wraps `SessionTransform` and its content in
+  `RepaintBoundary`s so per-frame animation paint no longer flows into the
+  host app shell, and the content subtree rasterizes once per frame instead
+  of repainting during motion.
+- Perf: `SessionHost` caches the built content widget per `SessionEntry`, so
+  structural rebuilds (minimize/restore) skip re-diffing the content subtree.
+- `SessionController` no longer wires its animations to `notifyListeners`
+  per frame — it now notifies only on discrete lifecycle transitions, same
+  as `statusListenable`. Listen to `expansion`/`closeProgress` directly for
+  per-frame values.
+
 ## 0.0.1
 
 - Initial release of the persistent session framework.
